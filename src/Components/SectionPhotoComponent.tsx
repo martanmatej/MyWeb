@@ -7,7 +7,7 @@ const photos = {
 }
 
 function SectionPhotoComponent() {
-    return <div style={{ flexDirection: 'row', display: 'flex', width: '100%', alignItems: 'flex-start', backgroundColor: '#090c0b' }}>
+    return <div style={{ flexDirection: 'row', display: 'flex', width: '100%', alignItems: 'flex-start', backgroundColor: '#121212' }}>
         <div>
             <img
                 src={photos.first}
@@ -25,7 +25,7 @@ function SectionPhotoComponent() {
         <div>
             <img
                 src={photos.third}
-                width={'100%'}
+                width={'99%'}
                 height={'100%'}
             />
         </div>
