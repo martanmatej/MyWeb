@@ -1,9 +1,9 @@
 import React from 'react';
 
 const photos = {
-    first: require('../photoSRC/IMG_7120.jpg'),
-    second: require('../photoSRC/IMG_7117.jpg'),
-    third: require('../photoSRC/IMG_7113.jpg'),
+    first: require('../photoSRC/IMG_7120-2.jpg'),
+    second: require('../photoSRC/IMG_7117-2.jpg'),
+    third: require('../photoSRC/IMG_7113-2.jpg'),
 }
 
 function SectionPhotoComponent() {
@@ -13,6 +13,7 @@ function SectionPhotoComponent() {
                 src={photos.first}
                 width={'99%'}
                 height={'100%'}
+                style={{pointerEvents: 'none'}}
             />
         </div>
         <div>
@@ -20,6 +21,7 @@ function SectionPhotoComponent() {
                 src={photos.second}
                 width={'99%'}
                 height={'100%'}
+                style={{pointerEvents: 'none'}}
             />
         </div>
         <div>
@@ -27,6 +29,7 @@ function SectionPhotoComponent() {
                 src={photos.third}
                 width={'99%'}
                 height={'100%'}
+                style={{pointerEvents: 'none'}}
             />
         </div>
     </div>
