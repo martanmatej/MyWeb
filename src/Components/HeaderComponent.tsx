@@ -10,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 
 function HeaderComponent() {
 
+    type user={
+        email: any|null,
+        password: string,
+    }
     const [textSize, setTextSize] = useState(15);
     const [width, setWidth] = useState(window.innerWidth);
 
@@ -17,16 +21,16 @@ function HeaderComponent() {
     const [menuVisible, setMenuVisible] = useState(0);
 
     const [viewPassword, setViewPassword] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [userTemp, setUserTemp] = useState<user>({email: null, password: ""});
 
 
     const register = async () => {
         try {
             const user = await createUserWithEmailAndPassword(
                 auth,
-                email,
-                password
+                userTemp.email,
+                userTemp.password
             );
         } catch (error) {
             console.log(error);
@@ -37,8 +41,8 @@ function HeaderComponent() {
         try {
             const user = await signInWithEmailAndPassword(
                 auth,
-                email,
-                password
+                userTemp.email,
+                userTemp.password
             );
         } catch (error) {
             console.log(error);
@@ -126,8 +130,7 @@ function HeaderComponent() {
                 >
                     <p style={{ fontSizeAdjust: 1, paddingLeft: '2%' }} onClick={() => {
                         setIsVisible(false);
-                        setPassword("");
-                        setEmail("");
+                        setUserTemp({email: "", password: ""});
                         setViewPassword(false);
                     }}>X</p>
                     <div
@@ -139,7 +142,7 @@ function HeaderComponent() {
                                     whileTap={{ scale: 0.9 }}
                                 >
                                     <input
-                                        value={email}
+                                        value={userTemp.email}
                                         placeholder="Email"
                                         type="email"
                                         style={{
@@ -155,7 +158,8 @@ function HeaderComponent() {
                                             outline: 0,
                                         }}
                                         onChange={(text) => {
-                                            setEmail(text.target.value)
+                                            setUserTemp({email: text.target.value, password: ""});
+                                            setEmail(text.target.value);
                                         }}
                                     />
 
@@ -163,7 +167,7 @@ function HeaderComponent() {
                                         size={25}
                                         style={{ paddingLeft: '1%' }}
                                         onClick={() => {
-                                            if (email !== '') {
+                                            if (userTemp.email !== '') {
                                                 setViewPassword(true);
                                             }
                                         }}
@@ -179,7 +183,7 @@ function HeaderComponent() {
 
                                 >
                                     <input
-                                        value={password}
+                                        value={userTemp.password}
                                         placeholder="Heslo"
                                         type="password"
                                         style={{
@@ -196,17 +200,17 @@ function HeaderComponent() {
 
                                         }}
                                         onChange={(text) => {
-                                            setPassword(text.target.value)
+                                            setUserTemp({email: email,password: text.target.value})
                                         }}
                                     />
                                     <Icon.CiPaperplane
                                         size={25}
                                         style={{ paddingLeft: '1%' }}
                                         onClick={() => {
-                                            if (password !== '') {
+                                            if (userTemp.password !== '') {
                                                 login();
+                                                setUserTemp({email: null ,password: ''});
                                                 setEmail("");
-                                                setPassword("");
                                                 setIsVisible(false);
                                                 setViewPassword(false);
                                             }
